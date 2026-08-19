@@ -13,42 +13,54 @@ def menu():
 while True:
     opcao = menu()
 
-    if opcao == "1":
-        tarefa = input("Digite a tarefa: ")
-        tarefas.append(tarefa)
-        print("Tarefa adicionada com sucesso!")
+    match opcao:
 
-    elif opcao == "2":
-        print("\n ======= LISTA DE TAREFAS =======")
-        for i, tarefa in enumerate(tarefas):
-            print(f"{i + 1} - {tarefa}")
+        case "1":
+            tarefa = input("Digite a tarefa: ")
+            tarefas.append(tarefa)
+            print("Tarefa adicionada com sucesso!")
 
-    elif opcao == "3":
-        print("\n ======= REMOVER TAREFA =======")
-        for i, tarefa in enumerate(tarefas):
-            print(f"{i + 1} - {tarefa}")
-        indice = int(input("Digite o número da tarefa que deseja remover: ")) - 1
-        if 0 <= indice < len(tarefas):
-            tarefas.pop(indice)
-            print("Tarefa removida com sucesso!")
-        else:
-            print("Índice inválido.")
+        case "2":
+            print("\n ======= LISTA DE TAREFAS =======")
 
-    elif opcao == "4":
-        print("\n ======= ATUALIZAR TAREFA =======")
-        for i, tarefa in enumerate(tarefas):
-            print(f"{i + 1} - {tarefa}")
-        indice = int(input("Digite o número da tarefa que deseja atualizar: ")) - 1
-        if 0 <= indice < len(tarefas):
-            nova_tarefa = input("Digite a nova descrição da tarefa: ")
-            tarefas[indice] = nova_tarefa
-            print("Tarefa atualizada com sucesso!")
-        else:
-            print("Índice inválido.")
+            if len(tarefas) == 0:
+                print("Nenhuma tarefa cadastrada.")
+            else:
+                for i, tarefa in enumerate(tarefas):
+                    print(f"{i + 1} - {tarefa}")
 
-    elif opcao == "5":
-        print("Saindo do programa...")
-        break
+        case "3":
+            print("\n ======= REMOVER TAREFA =======")
 
-    else:
-        print("Opção inválida. Tente novamente.")
+            for i, tarefa in enumerate(tarefas):
+                print(f"{i + 1} - {tarefa}")
+
+            indice = int(input("Digite o número da tarefa que deseja remover: ")) - 1
+
+            if 0 <= indice < len(tarefas):
+                tarefas.pop(indice)
+                print("Tarefa removida com sucesso!")
+            else:
+                print("Índice inválido.")
+
+        case "4":
+            print("\n ======= ATUALIZAR TAREFA =======")
+
+            for i, tarefa in enumerate(tarefas):
+                print(f"{i + 1} - {tarefa}")
+
+            indice = int(input("Digite o número da tarefa que deseja atualizar: ")) - 1
+
+            if 0 <= indice < len(tarefas):
+                nova_tarefa = input("Digite a nova descrição da tarefa: ")
+                tarefas[indice] = nova_tarefa
+                print("Tarefa atualizada com sucesso!")
+            else:
+                print("Índice inválido.")
+
+        case "5":
+            print("Saindo do programa...")
+            break
+
+        case _:
+            print("Opção inválida. Tente novamente.")
